@@ -15,17 +15,13 @@
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Incolsolata|Orbitron|Raleway:400,300,600" rel="stylesheet" type="text/css">
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
   <link rel="stylesheet" href="css/style.css">
-
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
 
   <!-- Javascript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -36,13 +32,41 @@
 
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
-    <div class="row">
-      <div class="one-half column" style="margin-top: 25%">
-        <h4>Basic Page</h4>
-        <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
-      </div>
+  <div class="container calculator">
+    <div class="row" id="title-bar">
+      <h4>Calculator</h4>
     </div>
+    <div class="row" id="screen">0</div>
+    <div id="button-tray">
+      <div class="row buttons">
+        <div class="nine columns">C</div>
+        <div class="three columns">CE</div>
+      </div>
+      <div class="row buttons">
+        <div class="three columns">7</div>
+        <div class="three columns">8</div>
+        <div class="three columns">9</div>
+        <div class="three columns">&divide;</div>
+      </div>
+      <div class="row buttons">
+        <div class="three columns">4</div>
+        <div class="three columns">5</div>
+        <div class="three columns">6</div>
+        <div class="three columns">&times;</div>
+      </div>
+      <div class="row buttons">
+        <div class="three columns">1</div>
+        <div class="three columns">2</div>
+        <div class="three columns">3</div>
+        <div class="three columns">&plus;</div>
+      </div>
+      <div class="row buttons">
+        <div class="three columns">0</div>
+        <div class="three columns">.</div>
+        <div class="three columns">&equals;</div>
+        <div class="three columns">&dash;</div>
+      </div>
+  </div>
   </div>
 
 <!-- End Document

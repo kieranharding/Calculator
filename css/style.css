@@ -1,0 +1,26 @@
+.calculator {
+  /*width: 45%;*/
+  max-width: 280px;
+}
+
+#title-bar {
+  font-family: 'Inconsolata', monospace;
+  text-align: center;
+}
+
+#screen {
+  font-family: 'Orbitron', sans-serif;
+  text-align: right;
+}
+
+.buttons {
+  margin-top: 5px;
+  font-family: 'Inconsolata', monospace;
+}
+
+.buttons > .columns {
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: right;
+  padding-right: 15px;
+}
