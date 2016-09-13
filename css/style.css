@@ -1,6 +1,13 @@
 .calculator {
-  width: 45%;
-  max-width: 240px;
+  position: relative;
+  margin-top: 50px;
+  padding: 30px 20px 50px 20px;
+  width: 240px;
+  -webkit-box-shadow: 0px 5px 0px grey;
+  -moz-box-shadow: 0px 5px 0px grey;
+  box-shadow: 0px 10px 0px grey;
+  border: 5px solid grey;
+  border-radius: 12px;
 }
 
 #title-bar {
@@ -11,6 +18,18 @@
 #screen {
   font-family: 'Orbitron', sans-serif;
   text-align: right;
+  border-radius: 5px;
+  border: solid lightgrey 1px;
+  padding: 2px 10px 2px 0px;
+  margin: 0px 5px 15px 5px;
+  box-shadow: inset 0px 3px 0px grey;
+
+  background: lightgrey;
+  background: -webkit-linear-gradient(-45deg, lightgrey, white, lightgrey);
+  background: -o-linear-gradient(-45deg, lightgrey, white, lightgrey);
+  background: linear-gradient(-45deg, lightgrey, white, lightgrey);
+
+
 }
 
 .buttons {
@@ -18,9 +37,26 @@
   font-family: 'Inconsolata', monospace;
 }
 
-.buttons > .columns {
-  border: 1px solid black;
+/*.buttons > .columns {*/
+.btn {
+  position: relative;
+  -webkit-box-shadow: 0px 2px 0px grey;
+  -moz-box-shadow: 0px 2px 0px grey;
+  box-shadow: 0px 2px 0px grey;
+  -webkit-transitions: all 0.1s;
+  -moz-transitions: all 0.1s;
+  transitions: all 0.1s;
+  border: 1px solid lightgrey;
   border-radius: 5px;
   text-align: right;
   padding-right: 5px;
+  cursor: pointer;
+}
+
+.btn:active {
+  position: relative;
+  top: 1px;
+  box-shadow: 0px 1px 0px;
+  -moz-box-shadow: 0px 1px 0px;
+  -webkit-box-shadow: 0px 1px 0px;
 }
