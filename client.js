@@ -28,13 +28,15 @@ function actionKey(e) {
 }
 
 function typeDecimal() {
-  if ($jq.screen.text() == $jq.state.stack) {
-    $jq.screen.text('0.')
-    $jq.state.userValue = true
-  } else {
-    $jq.screen.text($jq.screen.text() + '.')
+  if (!$jq.state.postDecimal) {
+    if ($jq.screen.text() == $jq.state.stack) {
+      $jq.screen.text('0.')
+      $jq.state.userValue = true
+    } else {
+      $jq.screen.text($jq.screen.text() + '.')
+    }
+    $jq.state.postDecimal = true
   }
-  $jq.state.postDecimal = true
 }
 
 function buttonClick(e) {
