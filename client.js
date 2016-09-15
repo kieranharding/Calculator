@@ -28,8 +28,8 @@ function actionKey(e) {
 }
 
 function typeDecimal() {
-  if (!$jq.state.postDecimal) {
-    if ($jq.screen.text() == $jq.state.stack) {
+  if (!$jq.state.postDecimal) { //  If no decimal has been entered. Easier to just look for one?
+    if (!$jq.state.userValue) {
       $jq.screen.text('0.')
       $jq.state.userValue = true
     } else {
@@ -84,39 +84,16 @@ function typeNumber(num) {
 
 function performOperation(newOperation) {
   //  if no number has been entered, the operation will be applied to zero
-
   $jq.state.stack.push($jq.screen.text())
   $jq.state.postDecimal = false
   $jq.state.result = eval($jq.state.stack.join(''))
   $jq.screen.text($jq.state.result)
-  $jq.state.stack.push(newOperation)
   $jq.state.userValue = false
-
-  // if ($jq.state.operation) {
-  // var x = Number($jq.screen.text())
-  // switch ($jq.state.operation.charCodeAt(0)) {
-  //   case 45:
-  //     $jq.state.stack -= x;
-  //     break;
-  //   case 43:
-  //     $jq.state.stack += x;
-  //     break;
-  //   case 42:
-  //   case 215:
-  //     $jq.state.stack *= x;
-  //     break;
-  //   case 47:
-  //   case 247:
-  //     $jq.state.stack /= x;
-  //     break;
-  // }
-  // } else {
-    // $jq.state.stack = Number($jq.screen.text())
-  // }
-
-  // $jq.screen.text($jq.state.stack)
-  // $jq.state.userValue = false
-  // $jq.state.operation = newOperation.charCodeAt(0) === 61 ? null : newOperation
+  if (!(newOperation === '=')) {
+    $jq.state.stack.push(newOperation)
+  } else {
+    $jq.state.stack = [].push($jq.screen.text())
+  }
 }
 
 function clearScreen() {
