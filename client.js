@@ -18,6 +18,8 @@ function actionKey(e) {
   // Handle non-entry keys that matter
   switch (e.which) {
     case 8:   // Backspace
+      clearEntry()
+      break;
     case 46:  // Delete
       clearScreen()
       break;
@@ -45,10 +47,10 @@ function buttonClick(e) {
     var val = e.target.innerText
     if (val.match(/^\d$/)) { //It's a number button
       typeNumber(Number(val))
-    } else if (val.match(/^C/)) { //It's a clear screen button
-      //  TODO:  Implement the difference between C and CE, which is that
-      //  C resets everything and CE clears the last entry only.
+    } else if (val.match(/^C$/)) { //It's a clear screen button
       clearScreen()
+    } else if (val.match(/^CE$/)) { //It's a clear entry button
+      clearEntry()
     } else if (val.match(/\./)) {
       typeDecimal()
     } else { //Only other option
@@ -106,6 +108,10 @@ function clearScreen() {
   $jq.state.postDecimal = false
   $jq.state.userValue = false
   $jq.state.result = 0
+}
+
+function clearEntry() {
+  $jq.screen.text(0)
 }
 
 $(function() {
