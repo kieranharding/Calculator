@@ -46,7 +46,8 @@ function buttonClick(e) {
     if (val.match(/^\d$/)) { //It's a number button
       typeNumber(Number(val))
     } else if (val.match(/^C/)) { //It's a clear screen button
-      //TODO: Find out the difference between C and CE
+      //  TODO:  Implement the difference between C and CE, which is that
+      //  C resets everything and CE clears the last entry only.
       clearScreen()
     } else if (val.match(/\./)) {
       typeDecimal()
@@ -56,8 +57,19 @@ function buttonClick(e) {
   }
 }
 
+function operationEntered() {
+  // if ($jq.state.stack.length) {
+  //   return $jq.state.stack[$jq.state.stack.length].match(/[\/\*\-\+=]/)
+  // } else {
+  //   return false
+  // }
+
+  return $jq.state.stack.length ? $jq.state.stack[$jq.state.stack.length]
+    .match(/[\/\*\-\+=]/) : false
+}
+
 function typeNumber(num) {
-  //Assumes num is actually a number (not a string).
+  // Expects a number, not a string
   if (!$jq.state.userValue) {
     $jq.screen.text(num)
     $jq.state.userValue = true
@@ -71,37 +83,45 @@ function typeNumber(num) {
 }
 
 function performOperation(newOperation) {
-  $jq.state.postDecimal = false
-  if ($jq.state.operation) {
-    var x = Number($jq.screen.text())
-    switch ($jq.state.operation.charCodeAt(0)) {
-      case 45:
-        $jq.state.stack -= x;
-        break;
-      case 43:
-        $jq.state.stack += x;
-        break;
-      case 42:
-      case 215:
-        $jq.state.stack *= x;
-        break;
-      case 47:
-      case 247:
-        $jq.state.stack /= x;
-        break;
-    }
-  } else {
-    $jq.state.stack = Number($jq.screen.text())
-  }
+  //  if no number has been entered, the operation will be applied to zero
 
-  $jq.screen.text($jq.state.stack)
+  $jq.state.stack.push($jq.screen.text())
+  $jq.state.postDecimal = false
+  $jq.state.result = eval($jq.state.stack.join(''))
+  $jq.screen.text($jq.state.result)
+  $jq.state.stack.push(newOperation)
   $jq.state.userValue = false
-  $jq.state.operation = newOperation.charCodeAt(0) === 61 ? null : newOperation
+
+  // if ($jq.state.operation) {
+  // var x = Number($jq.screen.text())
+  // switch ($jq.state.operation.charCodeAt(0)) {
+  //   case 45:
+  //     $jq.state.stack -= x;
+  //     break;
+  //   case 43:
+  //     $jq.state.stack += x;
+  //     break;
+  //   case 42:
+  //   case 215:
+  //     $jq.state.stack *= x;
+  //     break;
+  //   case 47:
+  //   case 247:
+  //     $jq.state.stack /= x;
+  //     break;
+  // }
+  // } else {
+    // $jq.state.stack = Number($jq.screen.text())
+  // }
+
+  // $jq.screen.text($jq.state.stack)
+  // $jq.state.userValue = false
+  // $jq.state.operation = newOperation.charCodeAt(0) === 61 ? null : newOperation
 }
 
 function clearScreen() {
   $jq.screen.text(0)
-  $jq.state.stack = 0
+  $jq.state.stack = []
   $jq.state.operation = null
   $jq.state.postDecimal = false
 }
@@ -116,9 +136,10 @@ $(function() {
 //False after an operation, which means we need a new stack and to clear the screen
   $jq.state = {
     userValue: true,
-    stack: 0,
+    stack: [],
     operation: null, //Unnecessary, for clarity
-    postDecimal: false
+    postDecimal: false,
+    result: 0
   }
 
   $jq.buttons.click(buttonClick)
