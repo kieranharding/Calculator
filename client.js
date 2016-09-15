@@ -83,24 +83,29 @@ function typeNumber(num) {
 }
 
 function performOperation(newOperation) {
-  //  if no number has been entered, the operation will be applied to zero
+  //  If no number has been entered, the operation will be applied to zero.
+  //  If the user has already done something and not cleared the screen,
+  //  the operation will be applied to the answer.
   $jq.state.stack.push($jq.screen.text())
-  $jq.state.postDecimal = false
   $jq.state.result = eval($jq.state.stack.join(''))
   $jq.screen.text($jq.state.result)
-  $jq.state.userValue = false
-  if (!(newOperation === '=')) {
+  if (!(newOperation === '=')) { // Still going...
     $jq.state.stack.push(newOperation)
-  } else {
-    $jq.state.stack = [].push($jq.screen.text())
+  } else { // Operation is complete
+    $jq.state.stack = []
   }
+
+  //  Prepare for whatever comes next
+  $jq.state.postDecimal = false
+  $jq.state.userValue = false
 }
 
 function clearScreen() {
   $jq.screen.text(0)
   $jq.state.stack = []
-  $jq.state.operation = null
   $jq.state.postDecimal = false
+  $jq.state.userValue = false
+  $jq.state.result = 0
 }
 
 $(function() {
@@ -114,7 +119,6 @@ $(function() {
   $jq.state = {
     userValue: true,
     stack: [],
-    operation: null, //Unnecessary, for clarity
     postDecimal: false,
     result: 0
   }
