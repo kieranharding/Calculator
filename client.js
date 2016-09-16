@@ -60,13 +60,8 @@ function buttonClick(e) {
 }
 
 function operationEntered() {
-  // if ($jq.state.stack.length) {
-  //   return $jq.state.stack[$jq.state.stack.length].match(/[\/\*\-\+=]/)
-  // } else {
-  //   return false
-  // }
-
-  return $jq.state.stack.length ? $jq.state.stack[$jq.state.stack.length]
+  //  Was the last thing entered an operation?
+  return $jq.state.stack.length ? $jq.state.stack[$jq.state.stack.length -1]
     .match(/[\/\*\-\+=]/) : false
 }
 
@@ -89,33 +84,35 @@ function performOperation(newOperation) {
   //  If no number has been entered, the operation will be applied to zero.
   //  If the user has already done something and not cleared the screen,
   //  the operation will be applied to the answer.
-  $jq.state.stack.push($jq.screen.text())
-  $jq.state.result = eval($jq.state.stack.join(''))
-  $jq.screen.text($jq.state.result)
-  if (!(newOperation === '=')) { // Still going...
-    switch (newOperation.charCodeAt(0)) {
-      case 45:
-        $jq.state.stack.push('-')
-        break;
-      case 43:
-        $jq.state.stack.push('+')
-        break;
-      case 42:
-      case 215:
-        $jq.state.stack.push('*')
-        break;
-      case 47:
-      case 247:
-        $jq.state.stack.push('/')
-        break;
+  if ($jq.state.userValue || !operationEntered()) {
+    $jq.state.stack.push($jq.screen.text())
+    $jq.state.result = eval($jq.state.stack.join(''))
+    $jq.screen.text($jq.state.result)
+    if (!(newOperation === '=')) { // Still going...
+      switch (newOperation.charCodeAt(0)) {
+        case 45:
+          $jq.state.stack.push('-')
+          break;
+        case 43:
+          $jq.state.stack.push('+')
+          break;
+        case 42:
+        case 215:
+          $jq.state.stack.push('*')
+          break;
+        case 47:
+        case 247:
+          $jq.state.stack.push('/')
+          break;
+      }
+    } else { // Operation is complete
+      $jq.state.stack = []
     }
-  } else { // Operation is complete
-    $jq.state.stack = []
-  }
 
-  //  Prepare for whatever comes next
-  $jq.state.postDecimal = false
-  $jq.state.userValue = false
+    //  Prepare for whatever comes next
+    $jq.state.postDecimal = false
+    $jq.state.userValue = false
+  }
 }
 
 function clearScreen() {
