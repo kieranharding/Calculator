@@ -2,6 +2,8 @@
 
  [https://www.freecodecamp.com/challenges/build-a-javascript-calculator](https://www.freecodecamp.com/challenges/build-a-javascript-calculator)
 
+See it on [Github](https://kieranharding.github.io/Calculator)
+
 ## Roadmap
 
 - [ ]  Remove JQuery. It is heavier than needed. Maybe later. I should have built without it, but not much benefit to removing it now.
@@ -10,8 +12,6 @@
 - [x]  Prevent adding more than one decimal.
 - [x]  AC Clear All; CE Clear Entry. On result, CE clears screen.
 - [ ]  Inconsolata font doesn't show up on Edge.
-- [ ]  Test on phone.
-- [ ]  Keep numbers on the "screen"
 
 ## Project Requirements
 
