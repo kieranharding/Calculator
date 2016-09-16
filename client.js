@@ -72,6 +72,7 @@ function operationEntered() {
 
 function typeNumber(num) {
   // Expects a number, not a string
+  // console.log($jq.state)
   if (!$jq.state.userValue) {
     $jq.screen.text(num)
     $jq.state.userValue = true
@@ -92,7 +93,22 @@ function performOperation(newOperation) {
   $jq.state.result = eval($jq.state.stack.join(''))
   $jq.screen.text($jq.state.result)
   if (!(newOperation === '=')) { // Still going...
-    $jq.state.stack.push(newOperation)
+    switch (newOperation.charCodeAt(0)) {
+      case 45:
+        $jq.state.stack.push('-')
+        break;
+      case 43:
+        $jq.state.stack.push('+')
+        break;
+      case 42:
+      case 215:
+        $jq.state.stack.push('*')
+        break;
+      case 47:
+      case 247:
+        $jq.state.stack.push('/')
+        break;
+    }
   } else { // Operation is complete
     $jq.state.stack = []
   }
