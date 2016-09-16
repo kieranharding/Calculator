@@ -10,8 +10,6 @@
 - [x]  Prevent adding more than one decimal.
 - [x]  AC Clear All; CE Clear Entry. On result, CE clears screen.
 - [ ]  Inconsolata font doesn't show up on Edge.
-- [ ]  Test on phone.
-- [ ]  Keep numbers on the "screen"
 
 ## Project Requirements
 
