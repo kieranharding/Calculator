@@ -42,16 +42,16 @@
   box-sizing: border-box; }
 
 /* For devices larger than 400px */
-@media (min-width: 400px) {
+/*@media (min-width: 400px) {
   .container {
     width: 95%;
     padding: 0; }
-}
+}*/
 
 /* For devices larger than 550px */
-@media (min-width: 550px) {
+@media (min-width: 400px) {
   .container {
-    width: 80%; }
+    width: 95%; }
   .column,
   .columns {
     margin-left: 4%; }
@@ -110,6 +110,12 @@
   .offset-by-one-half.column,
   .offset-by-one-half.columns     { margin-left: 52%; }
 
+}
+
+@media (min-width: 550px) {
+  .container {
+    width: 80%;
+  }
 }
 
 
