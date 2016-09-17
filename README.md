@@ -8,6 +8,8 @@ See it on [Github](https://kieranharding.github.io/Calculator).
 
 - [ ]  Remove JQuery. It is heavier than needed. Maybe later. I should have built without it, but not much benefit to removing it now.
 - [ ]  Inconsolata font doesn't show up on Edge.
+- [ ]  Make a length limit for the number displayed on the calculator screen.
+- [ ]  Make it more mobile friendly.
 
 ## Project Requirements
 
